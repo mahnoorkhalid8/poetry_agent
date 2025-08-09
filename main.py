@@ -51,12 +51,14 @@ dramaticAgent = Agent(
 triage_agent = Agent(
     name="Poetry Triage Agent",
     instructions=(
-        "You are a Poetry Triage Agent. Your job is to read the given poem (which can be in English or Urdu) and decide if it's:"
+       "You are a Poetry Triage Agent. Your job is to read the given poem (which can be in English or Urdu) and decide if it's:"
         "\n- Lyric Poetry (emotions, personal feelings),"
         "\n- Narrative Poetry (story, characters, events),"
         "\n- Dramatic Poetry (performance, dialogues, theatre style)."
         "\nAfter deciding, hand off the analysis to the correct agent: lyricalAgent, narrativeAgent, or dramaticAgent."
-        "\nReturn only the final analysis in the same language as the poem."
+        "First, clearly state the poetry type in this exact format:\n"
+        "Poetry Type: <Type>\n"
+        "\nThen provide the detailed explanation: If the poem is in English, write the heading 'Explanation' before starting. If the poem is in Urdu, write the heading 'تشریح' before starting. Keep the rest of the explanation in the same language as the poem."
     ),
     model=model,
     handoffs=[lyricalAgent, narrativeAgent, dramaticAgent]
